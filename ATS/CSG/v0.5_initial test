@@ -1,0 +1,30 @@
+clear
+
+Duration = 0;
+
+for i = 1:500
+  if Duration > 0
+      Duration = Duration - 1;
+      Value(i)  = Value(i-1)+Difference;
+      #noise(i, j) = tempnoise(i,Endstate(i)-Duration(i));
+    elseif Duration == 0
+      Duration = ceil([0,abs(normrnd(0,10))])(2);
+      Difference = normrnd(0,0.02)/Duration;
+    
+      if i == 1
+        Value(i) = 1.35+Difference
+      elseif i != 1
+       Value(i) = Value(i-1) + Difference;
+        
+        #tempnoise(i,1:Duration(i)) = normrnd(Difference,VariationParameter/(6^(i)));
+      endif  
+      
+        
+      
+      
+    endif
+  endfor
+  
+  plot(1:500, Value)
+  
+  
